@@ -12,6 +12,9 @@ spec:
   - name: everything-allowed-pod
     image: bitnami/kubectl:latest
     securityContext:
+      securityContext:
+      runAsUser: 0 
+      runAsGroup: 0
       privileged: true
     volumeMounts:
     - mountPath: /host
