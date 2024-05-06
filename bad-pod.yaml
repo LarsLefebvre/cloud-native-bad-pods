@@ -10,7 +10,7 @@ spec:
   hostIPC: true
   containers:
   - name: everything-allowed-pod
-    image: ubuntu
+    image: bitnami/kubectl:latest
     securityContext:
       privileged: true
     volumeMounts:
