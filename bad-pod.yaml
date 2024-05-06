@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: everything-allowed-exec-pod
+  name: everything-allowed-exec-pod-test
   labels:
     app: pentest
 spec:
