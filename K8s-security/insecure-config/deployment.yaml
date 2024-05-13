@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-app-insecure-config
+  labels:
+    app: demo-app-insecure-config
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: demo-app-insecure-config
+  template:
+    metadata:
+      labels:
+        app: demo-app-insecure-config
+    spec:
+      hostNetwork: true
+      hostPID: true
+      hostIPC: true
+      containers:
+      - name: demo-app-insecure-config
+        image: bitnami/kubectl:latest
+        command:
+          - sleep
+          - "3600"
+        imagePullPolicy: IfNotPresent
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - mountPath: /host
+          name: noderoot
+      serviceAccountName: demo-app-insecure-config
+      volumes:
+      - name: noderoot
+        hostPath:
+          path: /

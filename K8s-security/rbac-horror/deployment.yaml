@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-app-insecure-config
+  namespace: evil-ns
+  labels:
+    app: demo-app-insecure-config
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: demo-app-insecure-config
+  template:
+    metadata:
+      labels:
+        app: demo-app-insecure-config
+    spec:
+      containers:
+      - name: demo-app-insecure-config
+        image: bitnami/kubectl:latest
+        command:
+          - sleep
+          - "3600"
+        imagePullPolicy: IfNotPresent
+      serviceAccountName: evil-sa
