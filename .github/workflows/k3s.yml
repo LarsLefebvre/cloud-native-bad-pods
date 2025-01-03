@@ -13,11 +13,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up K3s
+      - name: Set up K3s and apply
         run: |
           curl -sfL https://get.k3s.io | sh -
           export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
-
-      - name: Apply Kubernetes manifests
-        run: |
           kubectl apply -f ./K8s-security/rbac-horror
+          
