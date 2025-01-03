@@ -13,11 +13,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - uses: debianmaster/actions-k3s@master
-        id: k3s
-        with:
-          version: 'latest'
-      - run: |
+      - name: Set up K3s
+        run: |
+          docker run -d --privileged --name=k3s-latest --expose=6443 -e K3S_KUBECONFIG_OUTPUT=/tmp/output/kubeconfig-latest.yaml -e K3S_KUBECONFIG_MODE=666 -v /tmp/output:/tmp/output -p 6443:6443 -p 80:80 -p 443:443 -p 8080:8080 rancher/k3s:latest server
           kubectl apply -f ./K8s-security/rbac-horror
-            
+
           
