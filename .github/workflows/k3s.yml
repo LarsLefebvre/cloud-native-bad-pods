@@ -20,4 +20,4 @@ jobs:
 
       - name: Apply Kubernetes manifests
         run: |
-          kubectl apply -f ./k8s-manifests/
+          kubectl apply -f .
